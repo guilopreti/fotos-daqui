@@ -1,22 +1,20 @@
 if("geolocation" in navigator){
     
-    navigator.geolocation.getCurrentPosition((position) =>{
-        console.log(position)
-        
+    navigator.geolocation.getCurrentPosition((position) =>{      
 
         let numero = 0
         
         const mostrarPrimeiraFoto = (numero, arrayURL, arrayObj) => {
-            const h1NoImage = document.querySelector(".sem-imagem")  
+            const h2NoImage = document.querySelector(".sem-imagem")  
             
             if(arrayURL.length === 0){              
-                return h1NoImage.style.display = "block"
+                return h2NoImage.style.display = "block"
             }
 
-            h1NoImage.style.display = "none"
+            h2NoImage.style.display = "none"
 
-            const h1NY = document.querySelector(".nova-iorque")
-            h1NY.style.display = "none"
+            const h2NY = document.querySelector(".nova-iorque")
+            h2NY.style.display = "none"
             
             const img = document.querySelector(".bloco-imagem img")
             img.src = arrayURL[numero]
@@ -58,7 +56,7 @@ if("geolocation" in navigator){
             } else if(numero > (imagensURL.length - 1)){
                 numero = 0
             }
-            console.log(numero)
+            
             mostrarPrimeiraFoto(numero,imagensURL,arrayCaminho)
             
         }
@@ -80,21 +78,31 @@ if("geolocation" in navigator){
         
 
         const mostrarFotoPesquisada = (numero, arrayURL, arrayObj, pesquisa) => {
-            const h1NoImagePesquisada = document.querySelector(".sem-imagem-pesquisada")  
+            const h2NoImagePesquisada = document.querySelector(".sem-imagem-pesquisada")  
             
             if(arrayURL.length === 0){              
-                h1NoImagePesquisada.innerHTML = ""
-                h1NoImagePesquisada.innerText = `Não encontramos fotos de ${pesquisa} nessa localidade. Pesquise sobre alguma outra coisa!`
-                return h1NoImagePesquisada.style.display = "block"
+                h2NoImagePesquisada.innerHTML = ""
+                h2NoImagePesquisada.innerText = `Não encontramos fotos de ${pesquisa} nessa localidade. Pesquise sobre alguma outra coisa!`
+                return h2NoImagePesquisada.style.display = "block"
             }
 
-            h1NoImagePesquisada.style.display = "none"
+            h2NoImagePesquisada.style.display = "none"
 
-            const h1NoImage = document.querySelector(".sem-imagem") 
-            h1NoImage.style.display = "none"
+            if(arrayURL.length === 1){
+                const h1Span = document.querySelector("h1 span")
+                h1Span.innerHTML = ""
+                h1Span.innerText = `Esta foi a única foto que achamos de ${pesquisa}!`
+            } else{
+                const h1Span = document.querySelector("h1 span")
+                h1Span.innerHTML = ""
+                h1Span.innerText = `Mostrando: ${pesquisa}!`
+            }
 
-            const h1NY = document.querySelector(".nova-iorque")
-            h1NY.style.display = "none"
+            const h2NoImage = document.querySelector(".sem-imagem") 
+            h2NoImage.style.display = "none"
+
+            const h2NY = document.querySelector(".nova-iorque")
+            h2NY.style.display = "none"
             
             const img = document.querySelector(".bloco-imagem img")
             img.src = arrayURL[numero]
@@ -136,7 +144,7 @@ if("geolocation" in navigator){
             } else if(numero > (imagensURL.length - 1)){
                 numero = 0
             }
-            console.log(numero)
+           
             mostrarFotoPesquisada(numero,imagensURL,arrayCaminho,pesquisa)
             
         }
@@ -178,15 +186,19 @@ if("geolocation" in navigator){
         let numero = 0
         
         const mostrarPrimeiraFoto = (numero, arrayURL, arrayObj) => {
-            const h1 = document.querySelector(".nova-iorque")
-            h1.style.display = "block"
+            const h1Span = document.querySelector("h1 span")
+            h1Span.innerHTML = ""
+            h1Span.innerText = "Mostrando: Places!"
+            
+            const h2 = document.querySelector(".nova-iorque")
+            h2.style.display = "block"
 
             const img = document.querySelector(".bloco-imagem img")
             img.src = arrayURL[numero]
-            img.alt = "Vista"
+            img.alt = "Place"
 
             const figcaption = document.querySelector(".bloco-imagem figcaption")
-            figcaption.innerText = "Vista"
+            figcaption.innerText = "Place"
 
             const p = document.querySelector(".textos p")
             p.innerText = arrayObj[numero].title
@@ -221,7 +233,7 @@ if("geolocation" in navigator){
             } else if(numero > (imagensURL.length - 1)){
                 numero = 0
             }
-            console.log(numero)
+            
             mostrarPrimeiraFoto(numero,imagensURL,arrayCaminho)
             
         }
@@ -241,23 +253,33 @@ if("geolocation" in navigator){
         })
 
         const mostrarFotoPesquisada = (numero, arrayURL, arrayObj, pesquisa) => {
-            const h1NoImagePesquisada = document.querySelector(".sem-imagem-pesquisada")  
+            const h2NoImagePesquisada = document.querySelector(".sem-imagem-pesquisada")  
             
             if(arrayURL.length === 0){              
-                h1NoImagePesquisada.innerHTML = ""
-                h1NoImagePesquisada.innerText = `Não encontramos fotos de ${pesquisa} em Nova Iorque. Pesquise sobre alguma outra coisa!`
-                return h1NoImagePesquisada.style.display = "block"
+                h2NoImagePesquisada.innerHTML = ""
+                h2NoImagePesquisada.innerText = `Não encontramos fotos de ${pesquisa} em Nova Iorque. Pesquise sobre alguma outra coisa!`
+                return h2NoImagePesquisada.style.display = "block"
             }
     
-            h1NoImagePesquisada.style.display = "none"
+            h2NoImagePesquisada.style.display = "none"
+
+            if(arrayURL.length === 1){
+                const h1Span = document.querySelector("h1 span")
+                h1Span.innerHTML = ""
+                h1Span.innerText = `Esta foi a única foto que achamos de ${pesquisa}!`
+            } else{
+                const h1Span = document.querySelector("h1 span")
+                h1Span.innerHTML = ""
+                h1Span.innerText = `Mostrando: ${pesquisa}!`
+            }
     
-            const h1NoImage = document.querySelector(".sem-imagem") 
-            h1NoImage.style.display = "none"
+            const h2NoImage = document.querySelector(".sem-imagem") 
+            h2NoImage.style.display = "none"
     
-            const h1NY = document.querySelector(".nova-iorque")
-            h1NY.innerHTML = ""
-            h1NY.innerText = `Como não encontramos sua localização, veja fotos de ${pesquisa} de Nova Iorque`
-            h1NY.style.display = "block"
+            const h2NY = document.querySelector(".nova-iorque")
+            h2NY.innerHTML = ""
+            h2NY.innerText = `Como não encontramos sua localização, veja fotos de ${pesquisa} de Nova Iorque`
+            h2NY.style.display = "block"
             
             const img = document.querySelector(".bloco-imagem img")
             img.src = arrayURL[numero]
@@ -299,7 +321,7 @@ if("geolocation" in navigator){
             } else if(numero > (imagensURL.length - 1)){
                 numero = 0
             }
-            console.log(numero)
+           
             mostrarFotoPesquisada(numero,imagensURL,arrayCaminho,pesquisa)
             
         }
@@ -339,15 +361,19 @@ if("geolocation" in navigator){
     let numero = 0
         
         const mostrarPrimeiraFoto = (numero, arrayURL, arrayObj) => {
-            const h1 = document.querySelector(".nova-iorque")
-            h1.style.display = "block"
+            const h1Span = document.querySelector("h1 span")
+            h1Span.innerHTML = ""
+            h1Span.innerText = "Mostrando: Places!"
+            
+            const h2 = document.querySelector(".nova-iorque")
+            h2.style.display = "block"
 
             const img = document.querySelector(".bloco-imagem img")
             img.src = arrayURL[numero]
-            img.alt = "Vista"
+            img.alt = "Place"
 
             const figcaption = document.querySelector(".bloco-imagem figcaption")
-            figcaption.innerText = "Vista"
+            figcaption.innerText = "Place"
 
             const p = document.querySelector(".textos p")
             p.innerText = arrayObj[numero].title
@@ -382,7 +408,7 @@ if("geolocation" in navigator){
             } else if(numero > (imagensURL.length - 1)){
                 numero = 0
             }
-            console.log(numero)
+            
             mostrarPrimeiraFoto(numero,imagensURL,arrayCaminho)
             
         }
@@ -402,23 +428,33 @@ if("geolocation" in navigator){
         })
 
         const mostrarFotoPesquisada = (numero, arrayURL, arrayObj, pesquisa) => {
-            const h1NoImagePesquisada = document.querySelector(".sem-imagem-pesquisada")  
+            const h2NoImagePesquisada = document.querySelector(".sem-imagem-pesquisada")  
             
             if(arrayURL.length === 0){              
-                h1NoImagePesquisada.innerHTML = ""
-                h1NoImagePesquisada.innerText = `Não encontramos fotos de ${pesquisa} em Nova Iorque. Pesquise sobre alguma outra coisa!`
-                return h1NoImagePesquisada.style.display = "block"
+                h2NoImagePesquisada.innerHTML = ""
+                h2NoImagePesquisada.innerText = `Não encontramos fotos de ${pesquisa} em Nova Iorque. Pesquise sobre alguma outra coisa!`
+                return h2NoImagePesquisada.style.display = "block"
             }
     
-            h1NoImagePesquisada.style.display = "none"
+            h2NoImagePesquisada.style.display = "none"
+
+            if(arrayURL.length === 1){
+                const h1Span = document.querySelector("h1 span")
+                h1Span.innerHTML = ""
+                h1Span.innerText = `Esta foi a única foto que achamos de ${pesquisa}!`
+            } else{
+                const h1Span = document.querySelector("h1 span")
+                h1Span.innerHTML = ""
+                h1Span.innerText = `Mostrando: ${pesquisa}!`
+            }
     
-            const h1NoImage = document.querySelector(".sem-imagem") 
-            h1NoImage.style.display = "none"
+            const h2NoImage = document.querySelector(".sem-imagem") 
+            h2NoImage.style.display = "none"
     
-            const h1NY = document.querySelector(".nova-iorque")
-            h1NY.innerHTML = ""
-            h1NY.innerText = `Como não encontramos sua localização, veja fotos de ${pesquisa} de Nova Iorque`
-            h1NY.style.display = "block"
+            const h2NY = document.querySelector(".nova-iorque")
+            h2NY.innerHTML = ""
+            h2NY.innerText = `Como não encontramos sua localização, veja fotos de ${pesquisa} de Nova Iorque`
+            h2NY.style.display = "block"
             
             const img = document.querySelector(".bloco-imagem img")
             img.src = arrayURL[numero]
@@ -460,7 +496,7 @@ if("geolocation" in navigator){
             } else if(numero > (imagensURL.length - 1)){
                 numero = 0
             }
-            console.log(numero)
+            
             mostrarFotoPesquisada(numero,imagensURL,arrayCaminho,pesquisa)
             
         }
